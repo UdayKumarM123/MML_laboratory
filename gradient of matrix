@@ -1,0 +1,33 @@
+import sympy as sp
+
+x,y=sp.symbols('x y')
+f=x**2+y**2-4*x+2*y
+grad=[sp.diff(f,i) for i in (x,y)]
+H=sp.hessian(f,(x,y))
+
+critical_points= sp.solve(grad,(x,y))
+print(critical_points)
+display(f"Function: {f}")
+display(f"Gradient: {grad}")
+display(f"Hessian Matrix:{H}")
+
+
+print(critical_points)
+
+H_at_point=H.subs(critical_points)
+
+eigen_vals=H_at_point.eigenvals()
+eigen_vals=list(eigen_vals)
+
+
+if (ev > 0 for ev in eigen_vals):
+    print("Classification: Local Minimum\n")
+elif (ev < 0 for ev in eigen_vals):
+    print("Classification: Local Maximum\n")
+elif (ev < 0 for ev in eigen_vals) and any(ev > 0 for ev in eigen_vals):
+    print("Classification: Saddle Point\n")
+else:
+    print("Classification: Inconclusive\n")
+    
+x=f.subs(critical_points)
+display(x)
