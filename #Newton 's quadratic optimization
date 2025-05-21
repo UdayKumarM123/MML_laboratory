@@ -1,0 +1,33 @@
+from sympy import *
+x,y=symbols('x y')
+f=x-y+2*(x**2)+2*x*y+y**2
+print("the function is")
+display(f)
+
+grad_f = Matrix([diff(f, x), diff(f, y)])
+print("the gradient function is")
+display(grad_f)
+x0=Matrix([0,0])
+grad_fs = grad_f.subs({x: x0[0], y: x0[1]}).evalf()
+
+h=hessian(f,(x,y))
+print("the hessian matrix")
+display(h)
+
+while True:
+    h1=h.subs({x: x0[0], y: x0[1]}).evalf()
+    h_inv=h1.inv()
+    x0=x0 - h_inv * grad_fs
+    grad_fs=grad_f.subs({x: x0[0], y: x0[1]}).evalf()
+    if all(abs(val) <= 0 for val in grad_fs):
+        break
+
+print("Local minimum found at:")
+display(x0)
+f1=f.subs({x: x0[0], y: x0[1]}).evalf()
+print("the minimum value of funtion is",f1)
+
+
+
+
+
