@@ -15,5 +15,5 @@ print(solutions)
 p1=f.subs({x:x1,y:y1,z:z1})
 p2=f.subs({x:x2,y:y2,z:z2})
 
-print("minimum_value:",min(p1,p2))
-print("maximum_value:",max(p1,p2))
+print("minimum_value:",sqrt(min(p1,p2)))
+print("maximum_value:",sqrt(max(p1,p2)))
