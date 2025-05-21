@@ -1,0 +1,13 @@
+from sympy import *
+x,y,z,l=symbols('x y z l')
+f=(x-3)**2+(y-4)**2+(z-12)**2
+g=x**2+y**2+z**2-1
+h=f+l*g
+
+hx=h.diff(x)
+hy=h.diff(y)
+hz=h.diff(z)
+
+equations = [Eq(hx, 0), Eq(hy, 0), Eq(hz, 0),Eq(g,0)]
+solutions = solve(equations, (x, y, z,l))
+print(solutions)
