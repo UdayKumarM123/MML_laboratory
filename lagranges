@@ -11,3 +11,9 @@ hz=h.diff(z)
 equations = [Eq(hx, 0), Eq(hy, 0), Eq(hz, 0),Eq(g,0)]
 solutions = solve(equations, (x, y, z,l))
 print(solutions)
+((x1,y1,z1,l1),(x2,y2,z2,l2))=solutions
+p1=f.subs({x:x1,y:y1,z:z1})
+p2=f.subs({x:x2,y:y2,z:z2})
+
+print("minimum_value:",min(p1,p2))
+print("maximum_value:",max(p1,p2))
