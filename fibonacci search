@@ -1,0 +1,22 @@
+from sympy import symbols, simplify
+x = symbols('x')
+f = x**2 - 2.6*x + 2
+a, b = -2, 3
+n = 6
+F = [1, 1, 2, 3, 5, 8, 13]
+print("L_K VALUES:")
+for k in range(1, n + 1):
+    l_k = (F[n - k] / F[n - k + 1]) * (b - a)
+    print(l_k)
+    x1=b-l_k
+    x2=a+l_k
+    f_x1=f.subs({x:x1})
+    f_x2=f.subs({x:x2})
+    if f_x1 > f_x2:
+        a = x1
+    else:
+        b = x2
+x_min = (a + b) / 2
+f_min = f.subs(x, x_min)
+print("X value:",x_min)
+print("Minimum value:",f_min)
